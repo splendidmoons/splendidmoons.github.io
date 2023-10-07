@@ -1,0 +1,3 @@
+<template>
+    <CalendarPage />
+</template>

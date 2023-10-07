@@ -1,0 +1,23 @@
+{
+  "name": "splendidmoons",
+  "version": "1.0.0",
+  "description": "Uposatha Moonday Calendar",
+  "author": "Gambhiro",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "bulma": "^0.9.4",
+    "nuxt": "^3.7.4",
+    "sass": "^1.69.0",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
+  }
+}

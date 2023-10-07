@@ -1,0 +1,52 @@
+# VS Code
+.vscode/
+
+# Emacs temp files
+*~
+\#*\#
+*.elc
+auto-save-list
+tramp
+.\#*
+.projectile
+TAGS
+
+# Vim temp files
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+*~
+tags
+
+# dotenv environment variables file
+.env
+.env.test
+
+# MacOS
+.DS_Store
+
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
