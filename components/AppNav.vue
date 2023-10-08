@@ -1,5 +1,8 @@
 <template>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav
+        :class="[is_dark ? 'is-dark' : '', 'navbar']"
+        role="navigation" aria-label="main navigation"
+    >
         <div class="navbar-brand">
             <NuxtLink to="/" class="navbar-item">
                 <img src="~/assets/images/logo-bw.svg" alt="Splendid Moons" width="40" height="40" />
@@ -23,10 +26,18 @@
             </div>
 
             <div class="navbar-end">
+                <div class="navbar-item">
+                    <DarkModeToggle />
+                </div>
+
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
-                        <img src="~/assets/images/circle-info-solid.svg" alt="Info" width="40" height="40" />
-                        Info
+                        <span class="icon-text">
+                            <span class="icon">
+                                <font-awesome-icon icon="fa-solid fa-circle-info" />
+                            </span>
+                            <span>Info</span>
+                        </span>
                     </a>
 
                     <div class="navbar-dropdown">
@@ -41,3 +52,14 @@
         </div>
     </nav>
 </template>
+
+<script>
+ import { mapWritableState } from 'pinia';
+ import { main_store } from '~/store/main';
+
+ export default {
+     computed: {
+         ...mapWritableState(main_store, ['is_dark']),
+     },
+ };
+</script>

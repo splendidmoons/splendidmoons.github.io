@@ -13,9 +13,16 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-regular-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@nuxt/devtools": "latest",
+    "@pinia/nuxt": "^0.4.11",
     "bulma": "^0.9.4",
+    "dayjs": "^1.11.10",
     "nuxt": "^3.7.4",
+    "pinia": "^2.1.6",
     "sass": "^1.69.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"

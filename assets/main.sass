@@ -1,5 +1,22 @@
 @charset "utf-8"
 
-@import "style/colors"
+@import "colors"
 
 @import "../node_modules/bulma/bulma.sass"
+
+body
+  background-color: $light
+  height: 100vh
+  transition: all 0.4s ease
+
+nav.navbar
+  background-color: $light
+  transition: all 0.4s ease
+
+body.is-dark
+  background-color: $dark
+  color: $light
+
+  nav.navbar
+    background-color: $dark
+    color: $light
