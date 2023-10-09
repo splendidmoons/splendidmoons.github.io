@@ -17,8 +17,19 @@
      },
 
      mounted() {
-         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-             main_store().set_is_dark(true);
+         let is_dark_str = localStorage.getItem('is_dark');
+         console.log(is_dark_str);
+
+         if (is_dark_str !== 'undefined' && is_dark_str !== null) {
+             main_store().set_is_dark((is_dark_str === 'true'));
+
+         } else {
+             let is_dark = false;
+             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                 is_dark = true;
+             }
+             main_store().set_is_dark(is_dark);
+             localStorage.setItem('is_dark', is_dark.toString());
          }
      },
  };
