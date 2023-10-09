@@ -18,7 +18,6 @@
 
      mounted() {
          let is_dark_str = localStorage.getItem('is_dark');
-         console.log(is_dark_str);
 
          if (is_dark_str !== 'undefined' && is_dark_str !== null) {
              main_store().set_is_dark((is_dark_str === 'true'));

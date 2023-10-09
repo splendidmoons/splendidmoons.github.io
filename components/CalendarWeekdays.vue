@@ -22,11 +22,11 @@ export default {
 .day-of-week
   display: grid
   grid-template-columns: repeat(7, 1fr)
-  font-size: 18px
+  font-size: 14px
   padding-bottom: 2px
   padding-top: 2px
   margin-top: 5px
-  margin-bottom: 10px
+  margin-bottom: 20px
 
 .day-of-week
   color: #fff

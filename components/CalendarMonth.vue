@@ -3,15 +3,13 @@
         <div class="calendar-month">
             <div class="calendar-month-header">
                 <CalendarDateIndicator
-                    :selected-date="selectedDate"
                     class="calendar-month-header-selected-month"
-                />
-
-                <CalendarDateSelector
-                    :current-date="today"
                     :selected-date="selectedDate"
+                    :current-date="today"
                     @dateSelected="selectDate"
                 />
+
+                <CalendarModeSelector />
             </div>
 
             <CalendarWeekdays/>
@@ -34,7 +32,7 @@
  import weekOfYear from "dayjs/plugin/weekOfYear";
  import CalendarMonthDayItem from "./CalendarMonthDayItem";
  import CalendarDateIndicator from "./CalendarDateIndicator";
- import CalendarDateSelector from "./CalendarDateSelector";
+ import CalendarModeSelector from "./CalendarModeSelector";
  import CalendarWeekdays from "./CalendarWeekdays";
 
  dayjs.extend(weekday);
@@ -46,7 +44,7 @@
      components: {
          CalendarMonthDayItem,
          CalendarDateIndicator,
-         CalendarDateSelector,
+         CalendarModeSelector,
          CalendarWeekdays
      },
 
@@ -194,6 +192,6 @@ li
 .days-grid
   height: 100%
   position: relative
-  grid-column-gap: var(--grid-gap)
-  grid-row-gap: var(--grid-gap)
+  // grid-column-gap: var(--grid-gap)
+  // grid-row-gap: var(--grid-gap)
 </style>
