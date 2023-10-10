@@ -84,6 +84,12 @@
      },
    },
 
+   data() {
+     return {
+       swipe_pos_x_start: 0,
+     }
+   },
+
    computed: {
      ...mapWritableState(main_store, ['is_dark', 'year_types']),
 
@@ -126,7 +132,73 @@
        let newSelectedDate = dayjs(this.currentDate);
        this.$emit("dateSelected", newSelectedDate);
      },
-   }
+
+     previous() {
+       if (this.calendarPeriod == 'month') {
+         this.selectPreviousMonth();
+       } else {
+         this.selectPreviousYear();
+       }
+     },
+
+     next() {
+       if (this.calendarPeriod == 'month') {
+         this.selectNextMonth();
+       } else {
+         this.selectNextYear();
+       }
+     },
+
+     keyDown(e) {
+       switch (e.keyCode) {
+           // left, k
+         case 37:
+         case 75:
+           this.previous();
+           break;
+
+           // right, j
+         case 39:
+         case 74:
+           this.next();
+           break;
+
+         default:
+           //console.log(e.keyCode);
+           return;
+       }
+     },
+
+     touchStart(e) {
+       // Only one finger
+       if (e.changedTouches.length !== 1) {
+         return;
+       }
+       this.swipe_pos_x_start = e.changedTouches[0].clientX;
+     },
+
+     touchEnd(e) {
+       // Only one finger
+       if (e.changedTouches.length !== 1) {
+         return;
+       }
+       const pos_x_end = e.changedTouches[0].clientX;
+       if (this.swipe_pos_x_start < pos_x_end) {
+         // swipe right
+         this.previous();
+       } else {
+         // swipe left
+         this.next();
+       }
+     },
+
+   },
+
+   mounted() {
+     window.addEventListener('keydown', this.keyDown);
+     window.addEventListener('touchstart', this.touchStart);
+     window.addEventListener('touchend', this.touchEnd);
+   },
  };
 </script>
 
