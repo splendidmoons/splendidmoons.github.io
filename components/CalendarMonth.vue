@@ -1,28 +1,19 @@
 <template>
-    <div class="calendar-month-comp">
-        <div class="calendar-month">
-            <div class="calendar-month-header">
-                <CalendarDateIndicator
-                    class="calendar-month-header-selected-month"
-                    :selected-date="selectedDate"
-                    :current-date="today"
-                    @dateSelected="selectDate"
-                />
+    <div :class="[isSmall ? 'is-small' : '', 'calendar-month']" >
+        <h2 v-show="showMonthName" class="calendar-month-name" >
+            {{ selectedDate.format("MMMM") }}
+        </h2>
+        <CalendarWeekdays v-show="!isCompact" :header-is-compact="headerIsCompact" />
 
-                <CalendarModeSelector />
-            </div>
-
-            <CalendarWeekdays/>
-
-            <ol class="days-grid">
-                <CalendarMonthDayItem
-                    v-for="day in days"
-                    :key="day.date"
-                    :day="day"
-                    :is-today="day.date === today"
-                />
-            </ol>
-        </div>
+        <ol :class="{'days-grid': !isCompact, 'days-list': isCompact,}">
+            <CalendarMonthDayItem
+                v-for="day in days"
+                :key="day.date"
+                :day="day"
+                :is-today="day.date === today"
+                :is-compact="isCompact"
+            />
+        </ol>
     </div>
 </template>
 
@@ -30,37 +21,55 @@
  import dayjs from "dayjs";
  import weekday from "dayjs/plugin/weekday";
  import weekOfYear from "dayjs/plugin/weekOfYear";
- import CalendarMonthDayItem from "./CalendarMonthDayItem";
- import CalendarDateIndicator from "./CalendarDateIndicator";
- import CalendarModeSelector from "./CalendarModeSelector";
- import CalendarWeekdays from "./CalendarWeekdays";
 
  dayjs.extend(weekday);
  dayjs.extend(weekOfYear);
 
  export default {
-     name: "CalendarMonth",
+     props: {
+         selectedDate: {
+             type: Object,
+             required: true
+         },
 
-     components: {
-         CalendarMonthDayItem,
-         CalendarDateIndicator,
-         CalendarModeSelector,
-         CalendarWeekdays
-     },
+         isCompact: {
+             type: Boolean,
+             required: true,
+         },
 
-     data() {
-         return {
-             selectedDate: dayjs()
-         };
+         headerIsCompact: {
+             type: Boolean,
+             required: false,
+             default: false,
+         },
+
+         isSmall: {
+             type: Boolean,
+             required: false,
+             default: false,
+         },
+
+         showMonthName: {
+             type: Boolean,
+             required: false,
+             default: false,
+         },
      },
 
      computed: {
          days() {
-             return [
-                 ...this.previousMonthDays,
-                 ...this.currentMonthDays,
-                 ...this.nextMonthDays
-             ];
+             if (this.isCompact) {
+                return [
+                    ...this.currentMonthDays,
+                ];
+
+             } else {
+                return [
+                    ...this.previousMonthDays,
+                    ...this.currentMonthDays,
+                    ...this.nextMonthDays
+                ];
+             }
          },
 
          today() {
@@ -149,49 +158,45 @@
          getWeekday(date) {
              return dayjs(date).weekday();
          },
-
-         selectDate(newSelectedDate) {
-             this.selectedDate = newSelectedDate;
-         }
      }
  };
 </script>
 
 <style scoped lang="sass">
-ol,
-li
-  padding: 0
-  margin: 0
-  list-style: none
+ ol,
+ li
+     padding: 0
+     margin: 0
+     list-style: none
 
-.calendar-month-header
-  display: flex
-  justify-content: space-between
-  padding: 10px
+ .calendar-month
+     position: relative
 
-.calendar-month-header
-  color: lighten(black, 20%)
+ .calendar-month
+     color: lighten(black, 70%)
 
-.is-dark .calendar-month-header
-  color: lighten(black, 90%)
+ .is-dark .calendar-month
+     color: lighten(black, 30%)
 
-.calendar-month
-  position: relative
+ .calendar-month-name
+     font-size: 20px
+     text-align: center
 
-.calendar-month
-  color: lighten(black, 70%)
+ .calendar-month-name
+     color: lighten(black, 30%)
 
-.is-dark .calendar-month
-  color: lighten(black, 30%)
+ .is-dark .calendar-month-name
+     color: lighten(black, 80%)
 
-.day-of-week,
-.days-grid
-  display: grid
-  grid-template-columns: repeat(7, 1fr)
+ .day-of-week,
+ .days-grid
+     display: grid
+     grid-template-columns: repeat(7, 1fr)
 
-.days-grid
-  height: 100%
-  position: relative
-  // grid-column-gap: var(--grid-gap)
-  // grid-row-gap: var(--grid-gap)
+ .days-grid
+     height: 100%
+     position: relative
+     // grid-column-gap: var(--grid-gap)
+     // grid-row-gap: var(--grid-gap)
+
 </style>

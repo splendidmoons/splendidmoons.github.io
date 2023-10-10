@@ -1,7 +1,7 @@
 <template>
     <button
         :class="[is_dark ? 'is-dark' : '', 'button']"
-        @click="$store.toggle_dark_mode()"
+        @click="$store.toggle_is_dark()"
     >
         <span class="icon" >
             <font-awesome-icon :icon="[is_dark ? 'fa-regular' : 'fa-solid', 'fa-lightbulb']" />

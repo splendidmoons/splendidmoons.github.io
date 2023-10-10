@@ -1,8 +1,12 @@
 import { defineStore } from 'pinia';
+import mahanikaya from '~/assets/mahanikaya.json';
+import year_types from '~/assets/year_types.json';
 
 export const main_store = defineStore('main', {
     state: () => ({
         is_dark: false,
+        events: mahanikaya,
+        year_types: year_types,
     }),
 
     actions: {
@@ -17,7 +21,7 @@ export const main_store = defineStore('main', {
             }
         },
 
-        toggle_dark_mode() {
+        toggle_is_dark() {
             this.set_is_dark(!this.is_dark);
         },
     },

@@ -20,9 +20,10 @@
       </span>
     </button>
 
-    <div class="button-spacer"></div>
+    <div v-show="calendarPeriod == 'month'" class="button-spacer"></div>
 
     <button
+      v-show="calendarPeriod == 'month'"
       :class="[is_dark ? 'is-dark' : '', 'button']"
       @click="selectPreviousMonth"
     >
@@ -31,9 +32,10 @@
       </span>
     </button>
 
-    <div class="date-label" style="width: 140px;">{{ selectedMonth }}</div>
+    <div v-show="calendarPeriod == 'month'" class="date-label" style="width: 140px;">{{ selectedMonth }}</div>
 
     <button
+      v-show="calendarPeriod == 'month'"
       :class="[is_dark ? 'is-dark' : '', 'button']"
       @click="selectNextMonth"
     >
@@ -50,6 +52,12 @@
     >
       <span>Today</span>
     </button>
+
+    <div class="button-spacer"></div>
+
+    <button :class="[is_dark ? 'is-dark' : '', 'button']" style="background-color: rgba(0, 43, 54, 0.7);">
+      <span>{{ selectedYearType }}</span>
+    </button>
   </div>
 </template>
 
@@ -59,8 +67,6 @@
  import { main_store } from '~/store/main';
 
  export default {
-   name: "CalendarDateIndicator",
-
    props: {
      selectedDate: {
        type: Object,
@@ -71,10 +77,19 @@
        type: String,
        required: true
      },
+
+     calendarPeriod: {
+       type: String,
+       required: true,
+     },
    },
 
    computed: {
-     ...mapWritableState(main_store, ['is_dark']),
+     ...mapWritableState(main_store, ['is_dark', 'year_types']),
+
+     selectedYearType() {
+       return this.year_types[this.selectedDate.year()] + " Year";
+     },
 
      selectedYear() {
        const be_year = this.selectedDate.year() + 543;
