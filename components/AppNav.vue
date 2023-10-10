@@ -8,14 +8,24 @@
                 <img src="~/assets/images/logo-bw.svg" alt="Splendid Moons" width="40" height="40" />
             </NuxtLink>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a
+                :class="[navbar_is_active ? 'is-active' : '', 'navbar-burger']"
+                role="button"
+                aria-label="menu"
+                aria-expanded="false"
+                data-target="navbarMenuTarget"
+                @click="toggleNavbar"
+            >
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div
+            id="navbarMenuTarget"
+            :class="[navbar_is_active ? 'is-active' : '', 'navbar-menu']"
+        >
             <div class="navbar-start">
                 <NuxtLink to="/" class="navbar-item">
                     Splendid Moons
@@ -58,8 +68,20 @@
  import { main_store } from '~/store/main';
 
  export default {
+     data() {
+         return {
+             navbar_is_active: false,
+         };
+     },
+
      computed: {
          ...mapWritableState(main_store, ['is_dark']),
      },
+
+     methods: {
+         toggleNavbar() {
+             this.navbar_is_active = !this.navbar_is_active;
+         },
+     }
  };
 </script>

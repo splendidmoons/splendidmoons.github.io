@@ -33,3 +33,10 @@
      },
  };
 </script>
+
+<style scoped lang="sass">
+ @import "../node_modules/bulma/sass/utilities/mixins.sass"
+ #content-wrap
+   @include until($desktop)
+     padding-top: 0
+</style>

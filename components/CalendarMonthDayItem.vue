@@ -165,12 +165,17 @@
 </script>
 
 <style scoped lang="sass">
+ @import "../node_modules/bulma/sass/utilities/mixins.sass"
+
  .calendar-day
      position: relative
      min-height: 100px
-     font-size: 16px
      padding: 5px
      text-align: center
+     @include until($desktop)
+        font-size: 12px
+     @include desktop
+        font-size: 16px
 
      &.is-compact
         position: normal

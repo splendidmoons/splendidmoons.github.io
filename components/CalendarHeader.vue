@@ -1,19 +1,25 @@
 <template>
     <div class="calendar-month-header">
-        <CalendarDateIndicator
-            class="calendar-month-header-selected-month"
-            :selected-date="selected_date"
-            :calendar-period="calendar_period"
-            :current-date="today"
-            @dateSelected="selectDate"
-        />
+        <div class="columns is-desktop">
+            <div class="column">
+                <CalendarDateIndicator
+                    class="calendar-month-header-selected-month"
+                    :selected-date="selected_date"
+                    :calendar-period="calendar_period"
+                    :current-date="today"
+                    @dateSelected="selectDate"
+                />
+            </div>
 
-        <CalendarModeSelector
-            :calendar-period="calendar_period"
-            :is-compact="is_compact"
-            @calendarPeriodChanged="setCalendarPeriod"
-            @isCompactChanged="setIsCompact"
-        />
+            <div class="column is-narrow">
+                <CalendarModeSelector
+                    :calendar-period="calendar_period"
+                    :is-compact="is_compact"
+                    @calendarPeriodChanged="setCalendarPeriod"
+                    @isCompactChanged="setIsCompact"
+                />
+            </div>
+        </div>
     </div>
 </template>
 
@@ -73,8 +79,6 @@
 
 <style scoped lang="sass">
  .calendar-month-header
-     display: flex
-     justify-content: space-between
      padding: 10px
 
  .calendar-month-header

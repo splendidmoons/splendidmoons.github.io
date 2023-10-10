@@ -1,63 +1,96 @@
 <template>
   <div class="calendar-date-indicator">
-    <button
-      :class="[is_dark ? 'is-dark' : '', 'button']"
-      @click="selectPreviousYear"
-    >
-      <span class="icon">
-        <font-awesome-icon icon="fa-solid fa-chevron-left" />
-      </span>
-    </button>
+    <div class="columns is-desktop">
 
-    <div class="date-label">{{ selectedYear }}</div>
+      <div class="column date-controls">
+        <div class="field is-grouped">
+          <p class="control">
+            <button
+              :class="[is_dark ? 'is-dark' : '', 'button']"
+              @click="selectPreviousYear"
+            >
+              <span class="icon">
+                <font-awesome-icon icon="fa-solid fa-chevron-left" />
+              </span>
+            </button>
+          </p>
 
-    <button
-      :class="[is_dark ? 'is-dark' : '', 'button']"
-      @click="selectNextYear"
-    >
-      <span class="icon">
-        <font-awesome-icon icon="fa-solid fa-chevron-right" />
-      </span>
-    </button>
+          <p class="control">
+            <button :class="[is_dark ? 'is-dark' : '', 'button']">
+              <span class="date-label">{{ selectedYear }}</span>
+            </button>
+          </p>
 
-    <div v-show="calendarPeriod == 'month'" class="button-spacer"></div>
+          <p class="control">
+            <button
+              :class="[is_dark ? 'is-dark' : '', 'button']"
+              @click="selectNextYear"
+            >
+              <span class="icon">
+                <font-awesome-icon icon="fa-solid fa-chevron-right" />
+              </span>
+            </button>
+          </p>
+        </div>
 
-    <button
-      v-show="calendarPeriod == 'month'"
-      :class="[is_dark ? 'is-dark' : '', 'button']"
-      @click="selectPreviousMonth"
-    >
-      <span class="icon">
-        <font-awesome-icon icon="fa-solid fa-chevron-left" />
-      </span>
-    </button>
+        <div v-show="calendarPeriod == 'month'" class="button-spacer"></div>
+      </div>
 
-    <div v-show="calendarPeriod == 'month'" class="date-label" style="width: 140px;">{{ selectedMonth }}</div>
+      <div class="column date-controls">
+        <div class="field is-grouped">
+          <p class="control">
+            <button
+              v-show="calendarPeriod == 'month'"
+              :class="[is_dark ? 'is-dark' : '', 'button']"
+              @click="selectPreviousMonth"
+            >
+              <span class="icon">
+                <font-awesome-icon icon="fa-solid fa-chevron-left" />
+              </span>
+            </button>
+          </p>
 
-    <button
-      v-show="calendarPeriod == 'month'"
-      :class="[is_dark ? 'is-dark' : '', 'button']"
-      @click="selectNextMonth"
-    >
-      <span class="icon">
-        <font-awesome-icon icon="fa-solid fa-chevron-right" />
-      </span>
-    </button>
+          <p v-show="calendarPeriod == 'month'" class="control">
+            <button :class="[is_dark ? 'is-dark' : '', 'button']">
+              <span class="date-label month-label">{{ selectedMonth }}</span>
+            </button>
+          </p>
 
-    <div class="button-spacer"></div>
+          <p class="control">
+            <button
+              v-show="calendarPeriod == 'month'"
+              :class="[is_dark ? 'is-dark' : '', 'button']"
+              @click="selectNextMonth"
+            >
+              <span class="icon">
+                <font-awesome-icon icon="fa-solid fa-chevron-right" />
+              </span>
+            </button>
+          </p>
+        </div>
+        <div class="button-spacer"></div>
+      </div>
 
-    <button
-      :class="[is_dark ? 'is-dark' : '', 'button']"
-      @click="selectCurrent"
-    >
-      <span>Today</span>
-    </button>
+      <div class="column is-narrow">
+        <div class="field is-grouped">
+          <p class="control">
+            <button
+              :class="[is_dark ? 'is-dark' : '', 'button']"
+              @click="selectCurrent"
+            >
+              <span>Today</span>
+            </button>
+            <div class="button-spacer"></div>
+          </p>
 
-    <div class="button-spacer"></div>
-
-    <button :class="[is_dark ? 'is-dark' : '', 'button']" style="background-color: rgba(0, 43, 54, 0.7);">
-      <span>{{ selectedYearType }}</span>
-    </button>
+          <p class="control">
+            <button :class="[is_dark ? 'is-dark' : '', 'button']" style="background-color: rgba(0, 43, 54, 0.7);">
+              <span>{{ selectedYearType }}</span>
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -203,20 +236,40 @@
 </script>
 
 <style scoped lang="sass">
- .calendar-date-indicator
-   display: flex
-   justify-content: space-between
+ @import "../node_modules/bulma/sass/utilities/mixins.sass"
 
+ .calendar-date-indicator
    .date-label
-     font-size: 24px
      font-weight: 600
      text-align: center
+     @include until($desktop)
+       font-size: 16px
+     @include desktop
+       font-size: 18px
+     @include widescreen
+       font-size: 24px
+
+     &.month-label
+       @include until($desktop)
+         width: 100px
+       @include desktop
+         width: 120px
+       @include widescreen
+         width: 140px
 
  .calendar-date-indicator > button
    cursor: pointer
    user-select: none
 
+ .column.date-controls
+   padding-bottom: 0
+   .field
+     margin-bottom: 0
+
  .button-spacer
    display: inline-block
-   padding-left: 20px
+   @include until($desktop)
+     padding-left: 5px
+   @include widescreen
+     padding-left: 20px
 </style>
