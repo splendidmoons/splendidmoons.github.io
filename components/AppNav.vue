@@ -53,9 +53,10 @@
                     <div class="navbar-dropdown">
                         <NuxtLink to="/add-to-google-calendar" class="navbar-item"> Add To Google Calendar </NuxtLink>
                         <NuxtLink to="/downloads" class="navbar-item"> Downloads (PDF, XLSX) </NuxtLink>
+                        <NuxtLink to="/navigation" class="navbar-item"> Navigation </NuxtLink>
                         <NuxtLink to="/how-to-calculate-uposathas" class="navbar-item"> How to Calculate Uposathas </NuxtLink>
                         <NuxtLink to="/import-in-python" class="navbar-item"> Import in Python Apps </NuxtLink>
-                        <NuxtLink to="/contact" class="navbar-item"> Contact </NuxtLink>
+                        <NuxtLink to="/about" class="navbar-item"> About </NuxtLink>
                     </div>
                 </div>
             </div>
