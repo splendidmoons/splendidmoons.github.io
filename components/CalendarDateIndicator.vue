@@ -273,10 +273,11 @@
    cursor: pointer
    user-select: none
 
- .column.date-controls
+ .column
    padding-bottom: 0
    .field
      margin-bottom: 0
+     justify-content: center
 
  .button-spacer
    display: inline-block

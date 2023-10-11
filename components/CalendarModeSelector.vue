@@ -1,26 +1,30 @@
 <template>
   <div class="calendar-mode-selector">
-    <div class="control">
-      <button :class="[is_dark ? 'is-dark' : '', 'button']">
-        <label class="radio">
-          <input type="radio" name="calendar_period" value="year" v-model="calendar_period" @change="setCalendarPeriod">
-          Year
-        </label>
-      </button>
-      <button :class="[is_dark ? 'is-dark' : '', 'button']">
-        <label class="radio">
-          <input type="radio" name="calendar_period" value="month" v-model="calendar_period" @change="setCalendarPeriod">
-          Month
-        </label>
-      </button>
-    </div>
+    <div class="field is-grouped">
+      <p class="control">
+        <button :class="[is_dark ? 'is-dark' : '', 'button']">
+          <label class="radio">
+            <input type="radio" name="calendar_period" value="year" v-model="calendar_period" @change="setCalendarPeriod">
+            Year
+          </label>
+        </button>
+        <button :class="[is_dark ? 'is-dark' : '', 'button']">
+          <label class="radio">
+            <input type="radio" name="calendar_period" value="month" v-model="calendar_period" @change="setCalendarPeriod">
+            Month
+          </label>
+        </button>
+      </p>
 
-    <button :class="[is_dark ? 'is-dark' : '', 'button']">
-      <label class="checkbox" for="is_checked">
-        <input type="checkbox" id="is_checked" v-model="is_compact" @change="setIsCompact">
-        Compact
-      </label>
-    </button>
+      <p class="control">
+        <button :class="[is_dark ? 'is-dark' : '', 'button']">
+          <label class="checkbox" for="is_checked">
+            <input type="checkbox" id="is_checked" v-model="is_compact" @change="setIsCompact">
+            Compact
+          </label>
+        </button>
+      </p>
+    </div>
   </div>
 </template>
 

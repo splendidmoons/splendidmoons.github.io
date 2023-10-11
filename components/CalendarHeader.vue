@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="columns">
+        <div class="columns mode-controls">
             <div class="column is-narrow hide-from-widescreen">
                 <CalendarModeSelector
                     :calendar-period="calendar_period"
@@ -97,4 +97,7 @@
 
  .is-dark .calendar-month-header
      color: lighten(black, 90%)
+
+ .columns.mode-controls
+   justify-content: center
 </style>
