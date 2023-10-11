@@ -1,0 +1,2 @@
+ignore = ["E401", "E501", "E712"]
+target-version = "py311"
