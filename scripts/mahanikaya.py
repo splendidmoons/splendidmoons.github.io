@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import json
+import json, csv
 from typing import List, Dict, TypedDict
 from splendidmoons.calendar_year import YEAR_TYPE_NAME, CalendarYear
 from splendidmoons.event_helpers import CalendarEvent, year_moondays, year_moondays_associated_events, calendar_event_to_str
@@ -85,6 +85,22 @@ def _collect_ical_events(from_year: int, to_year: int) -> List[IcalVEvent]:
 
     return ical_vevents
 
+def _collect_events_for_csv(from_year: int, to_year: int) -> List[CalendarEvent]:
+    events: List[CalendarEvent] = []
+
+    year = from_year
+    while year <= to_year:
+        events.extend(year_moondays(year))
+        events.extend(year_moondays_associated_events(year,
+                                                      show_month_names=True,
+                                                      show_adhikamasa_adhikavara=True))
+
+        year += 1
+
+    events = sorted(events, key=lambda x: x['date'])
+
+    return events
+
 def mahanikaya_json():
     json_path = "mahanikaya.json"
 
@@ -99,6 +115,20 @@ def mahanikaya_ical():
     events = _collect_ical_events(FROM_YEAR, TO_YEAR)
 
     write_ical(events, ical_path)
+
+def mahanikaya_csv():
+    csv_path = "mahanikaya.csv"
+
+    events = _collect_events_for_csv(FROM_YEAR, TO_YEAR)
+
+    with open(csv_path, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f,
+                                fieldnames=events[0].keys(),
+                                delimiter=',')
+
+        writer.writeheader()
+        for row in events:
+            writer.writerow(row)
 
 def year_types():
     json_path = "year_types.json"
@@ -116,6 +146,7 @@ def year_types():
 def main():
     mahanikaya_json()
     mahanikaya_ical()
+    mahanikaya_csv()
     year_types()
 
 if __name__ == "__main__":
