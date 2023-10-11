@@ -23,7 +23,14 @@ nav.navbar.is-dark .navbar-dropdown
       background-color: $light
       color: $dark
 
-
 body.is-dark
   background-color: $dark
   color: $light
+
+.hide-until-widescreen
+  @include until($widescreen)
+    display: none
+
+.hide-from-widescreen
+  @include from($widescreen)
+    display: none

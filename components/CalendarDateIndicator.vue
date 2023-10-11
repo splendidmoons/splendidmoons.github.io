@@ -247,14 +247,14 @@
      @include desktop
        font-size: 18px
      @include widescreen
+       font-size: 18px
+     @include fullhd
        font-size: 24px
 
      &.month-label
-       @include until($desktop)
-         width: 100px
-       @include desktop
-         width: 120px
-       @include widescreen
+       @include until($fullhd)
+         width: 90px
+       @include fullhd
          width: 140px
 
  .calendar-date-indicator > button
@@ -271,5 +271,7 @@
    @include until($desktop)
      padding-left: 5px
    @include widescreen
+     padding-left: 10px
+   @include fullhd
      padding-left: 20px
 </style>

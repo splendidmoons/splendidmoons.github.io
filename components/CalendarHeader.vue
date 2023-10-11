@@ -1,6 +1,6 @@
 <template>
     <div class="calendar-month-header">
-        <div class="columns is-desktop">
+        <div class="columns">
             <div class="column">
                 <CalendarDateIndicator
                     class="calendar-month-header-selected-month"
@@ -11,7 +11,18 @@
                 />
             </div>
 
-            <div class="column is-narrow">
+            <div class="column is-narrow hide-until-widescreen">
+                <CalendarModeSelector
+                    :calendar-period="calendar_period"
+                    :is-compact="is_compact"
+                    @calendarPeriodChanged="setCalendarPeriod"
+                    @isCompactChanged="setIsCompact"
+                />
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="column is-narrow hide-from-widescreen">
                 <CalendarModeSelector
                     :calendar-period="calendar_period"
                     :is-compact="is_compact"
