@@ -120,6 +120,7 @@
    data() {
      return {
        swipe_pos_x_start: 0,
+       swipe_pos_y_start: 0,
      }
    },
 
@@ -208,6 +209,7 @@
          return;
        }
        this.swipe_pos_x_start = e.changedTouches[0].clientX;
+       this.swipe_pos_y_start = e.changedTouches[0].clientY;
      },
 
      touchEnd(e) {
@@ -216,6 +218,16 @@
          return;
        }
        const pos_x_end = e.changedTouches[0].clientX;
+       const pos_y_end = e.changedTouches[0].clientY;
+
+       const delta_x = Math.abs(this.swipe_pos_x_start - pos_x_end);
+       const delta_y = Math.abs(this.swipe_pos_y_start - pos_y_end);
+
+       // vertical swipe
+       if (delta_y > delta_x) {
+         return;
+       }
+
        if (this.swipe_pos_x_start < pos_x_end) {
          // swipe right
          this.previous();
