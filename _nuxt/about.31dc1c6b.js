@@ -1,1 +1,0 @@
-import{_ as o}from"./_plugin-vue_export-helper.c27b6911.js";import{c as e,o as s,a as t,d as c}from"./entry.cd750f71.js";const a={},n={class:"content"},r=t("h1",null,"About",-1),_=t("p",null,[c(" Contact: "),t("a",{href:"https://gambhiro.github.io/"},"gambhiro.github.io")],-1),i=[r,_];function h(d,l){return s(),e("div",n,i)}const m=o(a,[["render",h]]);export{m as default};
