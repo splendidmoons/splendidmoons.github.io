@@ -4,6 +4,8 @@
 
 @import "../node_modules/bulma/bulma.sass"
 
+@import "../node_modules/highlight.js/scss/github-dark.scss"
+
 body
   background-color: $light
   min-height: 100vh
@@ -35,6 +37,20 @@ body.is-dark
   @include from($widescreen)
     display: none
 
+.content pre.has-code
+  margin: 0
+  padding: 0
+  code.hljs
+    padding: 0
+
 .is-dark .content
   h1, strong
     color: white
+
+.is-dark
+  code
+    background-color: $dark
+
+  pre
+    color: $light
+    background-color: $dark
