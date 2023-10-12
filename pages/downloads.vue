@@ -55,7 +55,22 @@
     <pre class="has-code">
       <code class="language-lisp">
 (add-to-list 'load-path "~/path/to/local/packages")
+
+;; This defines the holiday-moonday-holidays list
 (require 'holiday-moondays)
+
+;; Week starts on Monday.
+(setq calendar-week-start-day 1)
+;; calendar-holidays is usually a list of religious and secular dates, we
+;; replace the default list with only the moondays.
+(setq calendar-holidays holiday-moonday-holidays)
+;; Show holidays and diary entries when the calendar is opened.
+(setq calendar-mark-holidays-flag t
+      calendar-mark-diary-entries-flag t)
+;; Include the holidays (moondays) in the diary display buffer, instead of
+;; showing them in the minibuffer.
+(setq diary-list-include-blanks t
+      diary-show-holidays-flag t)
       </code>
     </pre>
 
