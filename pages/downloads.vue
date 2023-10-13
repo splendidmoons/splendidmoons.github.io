@@ -12,7 +12,7 @@
       See below for the available formats. <b>Right-click</b> on the link and select <b>Save As&hellip;</b> to download.
     </p>
 
-    <p>PDF</p>
+    <h3>PDF</h3>
 
     <ul>
       <li><a href="/calendars/fs-year-planner-compact.pdf">fs-year-planner-compact.pdf</a></li>
@@ -21,14 +21,14 @@
       <li><a href="/calendars/fs-year-planner-rows.pdf">fs-year-planner-rows.pdf</a></li>
     </ul>
 
-    <p>CSV, XLSX</p>
+    <h3>CSV, XLSX</h3>
 
     <ul>
       <li><a href="/calendars/mahanikaya.csv">mahanikaya.csv</a></li>
       <li><a href="/calendars/mahanikaya.xlsx">mahanikaya.xlsx</a></li>
     </ul>
 
-    <p>ICAL</p>
+    <h3>ICAL</h3>
 
     <ul>
       <li><a href="/ical/mahanikaya.ical">mahanikaya.ical</a></li>
@@ -42,7 +42,7 @@
       <img src="~/assets/images/add-by-url.png" style="border: 1px solid rgb(196, 196, 196); padding: 5px;" title="Add By Url">
     </p>
 
-    <p>Emacs</p>
+    <h3>Emacs</h3>
 
     <ul>
       <li><a href="/calendars/holiday-moondays.el">holiday-moondays.el</a></li>

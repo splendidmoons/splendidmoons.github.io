@@ -84,9 +84,9 @@
           </p>
 
           <p class="control">
-            <button :class="[is_dark ? 'is-dark' : '', 'button']" style="background-color: rgba(0, 43, 54, 0.7);">
-              <span>{{ selectedYearType }}</span>
-            </button>
+              <button :class="[is_dark ? 'is-dark' : '', 'button', 'is-static', 'year-type']">
+                  <span>{{ selectedYearType }}</span>
+              </button>
           </p>
         </div>
       </div>
@@ -287,4 +287,14 @@
      padding-left: 10px
    @include fullhd
      padding-left: 20px
+
+ .control button.year-type
+   border: none
+   color: white
+   background-color: rgba(0, 43, 54, 0.7)
+   font-size: 0.8rem
+   height: 2em
+   padding-top: calc(0.25em - 1px)
+   padding-bottom: calc(0.3em - 1px)
+   margin-top: calc(0.7em - 1px)
 </style>
