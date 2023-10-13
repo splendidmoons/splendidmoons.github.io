@@ -16,7 +16,7 @@
           </p>
 
           <p class="control">
-            <button :class="[is_dark ? 'is-dark' : '', 'button']">
+            <button :class="[is_dark ? 'is-dark' : '', 'button', 'is-static']">
               <span class="date-label">{{ selectedYear }}</span>
             </button>
           </p>
@@ -51,7 +51,7 @@
           </p>
 
           <p v-show="calendarPeriod == 'month'" class="control">
-            <button :class="[is_dark ? 'is-dark' : '', 'button']">
+            <button :class="[is_dark ? 'is-dark' : '', 'button', 'is-static']">
               <span class="date-label month-label">{{ selectedMonth }}</span>
             </button>
           </p>
@@ -249,6 +249,14 @@
 
 <style scoped lang="sass">
  @import "../node_modules/bulma/sass/utilities/mixins.sass"
+
+ button.is-static
+   border: none
+   background-color: $light
+   color: $dark
+   &.is-dark
+     background-color: $dark
+     color: $light
 
  .is-dark button
    border-width: 1px
