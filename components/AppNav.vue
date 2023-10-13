@@ -41,8 +41,8 @@
                 </div>
 
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        <span class="icon-text">
+                    <a class="navbar-link info-link" style="width: 115px;">
+                        <span class="icon-text" style="width: 60px;">
                             <span class="icon">
                                 <font-awesome-icon icon="fa-solid fa-circle-info" />
                             </span>
@@ -50,7 +50,7 @@
                         </span>
                     </a>
 
-                    <div class="navbar-dropdown">
+                    <div class="navbar-dropdown top-right-menu">
                         <NuxtLink to="/add-to-google-calendar" class="navbar-item"> Add To Google Calendar </NuxtLink>
                         <NuxtLink to="/downloads" class="navbar-item"> Downloads (PDF, XLSX) </NuxtLink>
                         <NuxtLink to="/navigation" class="navbar-item"> Navigation </NuxtLink>
@@ -86,3 +86,20 @@
      }
  };
 </script>
+
+<style scoped lang="sass">
+ @import "../node_modules/bulma/sass/utilities/mixins.sass"
+
+ .navbar-link.info-link
+   width: 115px
+
+ @include from($desktop)
+   .navbar-dropdown.top-right-menu
+     position: absolute
+     width: 245px
+     left: -130px
+
+ @include until($desktop)
+   .is-dark .navbar-menu
+     background-color: lighten($dark, 20)
+</style>
