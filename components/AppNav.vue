@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link info-link" style="width: 115px;">
+                    <a class="navbar-link" style="width: 115px;">
                         <span class="icon-text" style="width: 60px;">
                             <span class="icon">
                                 <font-awesome-icon icon="fa-solid fa-circle-info" />
@@ -89,9 +89,6 @@
 
 <style scoped lang="sass">
  @import "../node_modules/bulma/sass/utilities/mixins.sass"
-
- .navbar-link.info-link
-   width: 115px
 
  @include from($desktop)
    .navbar-dropdown.top-right-menu

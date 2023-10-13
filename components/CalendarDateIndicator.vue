@@ -250,6 +250,10 @@
 <style scoped lang="sass">
  @import "../node_modules/bulma/sass/utilities/mixins.sass"
 
+ .is-dark button
+   border-width: 1px
+   border-color: lighten(black, 30%)
+
  .calendar-date-indicator
    .date-label
      font-weight: 600
