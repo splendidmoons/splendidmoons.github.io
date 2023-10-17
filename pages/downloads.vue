@@ -32,6 +32,7 @@
 
     <ul>
       <li><a href="/ical/mahanikaya.ical">mahanikaya.ical</a></li>
+      <li><a href="/ical/mahanikaya-only-uposathas.ical">mahanikaya-only-uposathas.ical</a></li>
     </ul>
 
     <p>

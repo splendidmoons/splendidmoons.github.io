@@ -60,20 +60,34 @@ def _collect_json_events_by_date(from_year: int, to_year: int) -> Dict[str, List
 
     return events_by_date
 
-def _collect_ical_events(from_year: int, to_year: int) -> List[IcalVEvent]:
+def _collect_ical_events(from_year: int, to_year: int, only_uposathas = False) -> List[IcalVEvent]:
 
     events: List[CalendarEvent] = []
 
     year = from_year
     while year <= to_year:
         events.extend(year_moondays(year))
-        events.extend(year_moondays_associated_events(year,
-                                                      show_month_names=True,
-                                                      show_adhikamasa_adhikavara=True))
+        if only_uposathas:
+            events.extend(year_moondays_associated_events(year,
+                                                          show_month_names=False,
+                                                          show_adhikamasa_adhikavara=False))
+
+        else:
+            events.extend(year_moondays_associated_events(year,
+                                                          show_month_names=True,
+                                                          show_adhikamasa_adhikavara=True))
 
         year += 1
 
     events = sorted(events, key=lambda x: x['date'])
+
+    def _keep_for_uposathas(e: CalendarEvent) -> bool:
+        return (e['phase'] == 'full' \
+                or e['phase'] == 'new'\
+                or e['label'] == 'first-day')
+
+    if only_uposathas:
+        events = [e for e in events if _keep_for_uposathas(e)]
 
     def _to_vevent(e: CalendarEvent) -> IcalVEvent:
         if e['phase'] != "":
@@ -116,6 +130,18 @@ def mahanikaya_ical():
 
     write_ical(events, ical_path)
 
+def mahanikaya_only_uposathas_ical():
+    ical_path = "mahanikaya-only-uposathas.ical"
+
+    events = _collect_ical_events(FROM_YEAR, TO_YEAR, only_uposathas=True)
+
+    write_ical(
+        events,
+        ical_path,
+        ical_prod_id = "Uposatha Moondays (Mahānikāya, Only Uposathas) EN",
+        ical_url = "http://splendidmoons.github.io/ical/mahanikaya-only-uposathas.ical",
+        ical_name = "Uposatha Moondays (Mahānikāya, Only Uposathas)")
+
 def mahanikaya_csv():
     csv_path = "mahanikaya.csv"
 
@@ -146,6 +172,7 @@ def year_types():
 def main():
     mahanikaya_json()
     mahanikaya_ical()
+    mahanikaya_only_uposathas_ical()
     mahanikaya_csv()
     year_types()
 

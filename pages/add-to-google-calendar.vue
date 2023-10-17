@@ -14,6 +14,11 @@
           Uposatha Moondays (Mahānikāya) [.ical]
         </a>
       </li>
+      <li>
+        <a href="http://splendidmoons.github.io/ical/mahanikaya-only-uposathas.ical">
+          Uposatha Moondays (Mahānikāya) [.ical] (Only Uposathas)
+        </a>
+      </li>
     </ul>
 
     <p></p>
