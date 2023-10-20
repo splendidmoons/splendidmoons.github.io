@@ -1,0 +1,24 @@
+import{H as r,s as u}from"./shell.1216e383.js";import{_ as b}from"./add-by-url.13ff0e37.js";import{c as _,o as E,f as k}from"./entry.84b6c272.js";import{_ as w}from"./_plugin-vue_export-helper.c27b6911.js";import"./_commonjsHelpers.725317a4.js";function T(a){const e="[a-zA-Z_\\-+\\*\\/<=>&#][a-zA-Z0-9_\\-+*\\/<=>&#!]*",o="\\|[^]*?\\|",s="(-|\\+)?\\d+(\\.\\d+|\\/\\d+)?((d|e|f|l|s|D|E|F|L|S)(\\+|-)?\\d+)?",i={className:"literal",begin:"\\b(t{1}|nil)\\b"},n={className:"number",variants:[{begin:s,relevance:0},{begin:"#(b|B)[0-1]+(/[0-1]+)?"},{begin:"#(o|O)[0-7]+(/[0-7]+)?"},{begin:"#(x|X)[0-9a-fA-F]+(/[0-9a-fA-F]+)?"},{begin:"#(c|C)\\("+s+" +"+s,end:"\\)"}]},l=a.inherit(a.QUOTE_STRING_MODE,{illegal:null}),c=a.COMMENT(";","$",{relevance:0}),h={begin:"\\*",end:"\\*"},p={className:"symbol",begin:"[:&]"+e},t={begin:e,relevance:0},g={begin:o},y={contains:[n,l,h,p,{begin:"\\(",end:"\\)",contains:["self",i,l,n,t]},t],variants:[{begin:"['`]\\(",end:"\\)"},{begin:"\\(quote ",end:"\\)",keywords:{name:"quote"}},{begin:"'"+o}]},m={variants:[{begin:"'"+e},{begin:"#'"+e+"(::"+e+")*"}]},d={begin:"\\(\\s*",end:"\\)"},f={endsWithParent:!0,relevance:0};return d.contains=[{className:"name",variants:[{begin:e,relevance:0},{begin:o}]},f],f.contains=[y,m,d,i,n,l,c,h,p,g,t],{name:"Lisp",illegal:/\S/,contains:[n,a.SHEBANG(),i,l,c,y,m,d,t]}}const S=""+new URL("emacs-calendar-moondays.cf82ab2e.png",import.meta.url).href;r.registerLanguage("lisp",T);r.registerLanguage("shell",u);const L={mounted(){document.querySelectorAll("pre code").forEach(a=>{r.highlightElement(a)})}},v={class:"content"},M=k('<h1>Downloads</h1><p> The uposatha calendars include years 2000–2100. </p><p> The calendar data is generated using the <a href="https://github.com/splendidmoons/splendidmoons">splendidmoons</a> Python package. </p><p> See below for the available formats. <b>Right-click</b> on the link and select <b>Save As…</b> to download. </p><h3>PDF</h3><ul><li><a href="/calendars/fs-year-planner-compact.pdf">fs-year-planner-compact.pdf</a></li><li><a href="/calendars/fs-year-planner-grid.pdf">fs-year-planner-grid.pdf</a></li><li><a href="/calendars/fs-year-planner-portrait.pdf">fs-year-planner-portrait.pdf</a></li><li><a href="/calendars/fs-year-planner-rows.pdf">fs-year-planner-rows.pdf</a></li></ul><h3>CSV, XLSX</h3><ul><li><a href="/calendars/mahanikaya.csv">mahanikaya.csv</a></li><li><a href="/calendars/mahanikaya.xlsx">mahanikaya.xlsx</a></li></ul><h3>ICAL</h3><ul><li><a href="http://splendidmoons.github.io/ical/mahanikaya.ical">mahanikaya.ical</a></li><li><a href="http://splendidmoons.github.io/ical/mahanikaya-only-uposathas.ical">mahanikaya-only-uposathas.ical</a> (Full- and New Moons, Major Moondays, First- and Last Day of Vassa)</li><li><a href="http://splendidmoons.github.io/ical/mahanikaya-only-uposathas-icons-short.ical">mahanikaya-only-uposathas-icons-short.ical</a> (🌕 15d H 4/8)</li><li><a href="http://splendidmoons.github.io/ical/mahanikaya-only-uposathas-icons-faces-short.ical">mahanikaya-only-uposathas-icons-faces-short.ical</a> (🌝 15d H 4/8)</li></ul><p> Copy the .ical url to import in your calendar application, or add to Google Calendar. </p><p><img src="'+b+`" style="border:1px solid rgb(196, 196, 196);padding:5px;" title="Add By Url"></p><h3>Emacs</h3><ul><li><a href="/calendars/holiday-moondays.el">holiday-moondays.el</a></li></ul><p> This defines calendar events to show with <code>M-x calendar</code> in emacs. Place it in the folder where you load local packages from. </p><pre class="has-code">      <code class="language-lisp">
+(add-to-list &#39;load-path &quot;~/path/to/local/packages&quot;)
+
+;; This defines the holiday-moonday-holidays list
+(require &#39;holiday-moondays)
+
+;; Week starts on Monday.
+(setq calendar-week-start-day 1)
+;; calendar-holidays is usually a list of religious and secular dates, we
+;; replace the default list with only the moondays.
+(setq calendar-holidays holiday-moonday-holidays)
+;; Show holidays and diary entries when the calendar is opened.
+(setq calendar-mark-holidays-flag t
+      calendar-mark-diary-entries-flag t)
+;; Include the holidays (moondays) in the diary display buffer, instead of
+;; showing them in the minibuffer.
+(setq diary-list-include-blanks t
+      diary-show-holidays-flag t)
+      </code>
+    </pre><p><img src="`+S+`"></p><p> The complete list from 2000-2100 is quite long, so it&#39;s probably a good idea to filter it for the relevant years. Download with <code>wget</code> and filter with <code>sed</code> for example: </p><pre class="has-code">      <code class="language-shell">
+wget -O - &quot;https://splendidmoons.github.io/calendars/holiday-moondays.el&quot; |\\
+    sed &#39;/^(holiday-sexp/ { /\\(2022\\|2023\\|2024\\|2025\\)/ !d; };&#39; &gt; holiday-moondays.el
+      </code>
+    </pre>`,19),N=[M];function D(a,e,o,s,i,n){return E(),_("div",v,N)}const B=w(L,[["render",D]]);export{B as default};
