@@ -31,8 +31,10 @@
     <h3>ICAL</h3>
 
     <ul>
-      <li><a href="/ical/mahanikaya.ical">mahanikaya.ical</a></li>
-      <li><a href="/ical/mahanikaya-only-uposathas.ical">mahanikaya-only-uposathas.ical</a></li>
+      <li><a href="http://splendidmoons.github.io/ical/mahanikaya.ical">mahanikaya.ical</a></li>
+      <li><a href="http://splendidmoons.github.io/ical/mahanikaya-only-uposathas.ical">mahanikaya-only-uposathas.ical</a> (Full- and New Moons, Major Moondays, First- and Last Day of Vassa)</li>
+      <li><a href="http://splendidmoons.github.io/ical/mahanikaya-only-uposathas-icons-short.ical">mahanikaya-only-uposathas-icons-short.ical</a> (🌕 15d H 4/8)</li>
+      <li><a href="http://splendidmoons.github.io/ical/mahanikaya-only-uposathas-icons-faces-short.ical">mahanikaya-only-uposathas-icons-faces-short.ical</a> (🌝 15d H 4/8)</li>
     </ul>
 
     <p>

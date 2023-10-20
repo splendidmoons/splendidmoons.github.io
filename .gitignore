@@ -1,7 +1,6 @@
 # Project temp files
-scripts/mahanikaya-only-uposathas.ical
+scripts/*.ical
 scripts/mahanikaya.csv
-scripts/mahanikaya.ical
 scripts/mahanikaya.json
 scripts/year_types.json
 
