@@ -42,6 +42,13 @@ MOON_PHASE_DAY_TEXT: Dict[str, str] = {
     "waning": "Waning Moon", # Last Quarter
 }
 
+SHORT_MOON_PHASE_DAY_TEXT: Dict[str, str] = {
+    "new": "New",
+    "waxing": "Waxing Moon", # First Quarter
+    "full": "Full",
+    "waning": "Waning Moon", # Last Quarter
+}
+
 ICON_MOON_PHASE_DAY_TEXT: Dict[str, str] = {
     "new": "🌑", # https://emojipedia.org/new-moon
     "waxing": "🌓", # https://emojipedia.org/first-quarter-moon
@@ -75,6 +82,10 @@ def custom_calendar_event_to_str(e: CalendarEvent, icons = False, faces = False,
             phase_text = ICON_FACE_MOON_PHASE_DAY_TEXT[e['phase']]
         else:
             phase_text = ICON_MOON_PHASE_DAY_TEXT[e['phase']]
+
+    elif short:
+        phase_text = SHORT_MOON_PHASE_DAY_TEXT[e['phase']]
+
     else:
         phase_text = MOON_PHASE_DAY_TEXT[e['phase']]
 
@@ -133,6 +144,7 @@ def _collect_json_events_by_date(from_year: int, to_year: int) -> Dict[str, List
 def _collect_ical_events(from_year: int,
                          to_year: int,
                          only_uposathas = False,
+                         only_moons = False,
                          icons = False,
                          faces = False,
                          short = False) -> List[IcalVEvent]:
@@ -142,7 +154,7 @@ def _collect_ical_events(from_year: int,
     year = from_year
     while year <= to_year:
         events.extend(year_moondays(year))
-        if only_uposathas:
+        if only_uposathas or only_moons:
             events.extend(year_moondays_associated_events(year,
                                                           show_month_names=False,
                                                           show_adhikamasa_adhikavara=False))
@@ -205,19 +217,58 @@ def mahanikaya_ical():
 
     write_ical(events, ical_path)
 
-def mahanikaya_only_uposathas_ical():
-    ical_path = "mahanikaya-only-uposathas.ical"
+def mahanikaya_only_moons_ical():
+    ical_filename = "mahanikaya-only-moons.ical"
+    events = _collect_ical_events(FROM_YEAR, TO_YEAR, only_moons=True)
 
+    write_ical(
+        events,
+        ical_filename,
+        ical_prod_id = "Uposatha Moondays (Mahānikāya, Only Moons) EN",
+        ical_url = f"http://splendidmoons.github.io/ical/{ical_filename}",
+        ical_name = ICAL_NAME)
+
+    ical_filename = "mahanikaya-only-moons-short.ical"
+    events = _collect_ical_events(FROM_YEAR, TO_YEAR, only_moons=True, short=True)
+
+    write_ical(
+        events,
+        ical_filename,
+        ical_prod_id = "Uposatha Moondays (Mahānikāya, Only Moons, Short) EN",
+        ical_url = f"http://splendidmoons.github.io/ical/{ical_filename}",
+        ical_name = ICAL_NAME)
+
+    ical_filename = "mahanikaya-only-moons-icons-short.ical"
+    events = _collect_ical_events(FROM_YEAR, TO_YEAR, only_moons=True, icons=True, faces=False, short=True)
+
+    write_ical(
+        events,
+        ical_filename,
+        ical_prod_id = "Uposatha Moondays (Mahānikāya, Only Moons, Moon Icons, Short) EN",
+        ical_url = f"http://splendidmoons.github.io/ical/{ical_filename}",
+        ical_name = ICAL_NAME)
+
+    ical_filename = "mahanikaya-only-moons-icons-faces-short.ical"
+    events = _collect_ical_events(FROM_YEAR, TO_YEAR, only_moons=True, icons=True, faces=True, short=True)
+
+    write_ical(
+        events,
+        ical_filename,
+        ical_prod_id = "Uposatha Moondays (Mahānikāya, Only Moons, Moon Icon Faces, Short) EN",
+        ical_url = f"http://splendidmoons.github.io/ical/{ical_filename}",
+        ical_name = ICAL_NAME)
+
+def mahanikaya_only_uposathas_ical():
+    ical_filename = "mahanikaya-only-uposathas.ical"
     events = _collect_ical_events(FROM_YEAR, TO_YEAR, only_uposathas=True)
 
     write_ical(
         events,
-        ical_path,
+        ical_filename,
         ical_prod_id = "Uposatha Moondays (Mahānikāya, Only Uposathas) EN",
         ical_url = "http://splendidmoons.github.io/ical/mahanikaya-only-uposathas.ical",
         ical_name = ICAL_NAME)
 
-def mahanikaya_only_uposathas_icons():
     ical_filename = "mahanikaya-only-uposathas-icons-short.ical"
     events = _collect_ical_events(FROM_YEAR, TO_YEAR, only_uposathas=True, icons=True, faces=False, short=True)
 
@@ -269,7 +320,7 @@ def main():
     mahanikaya_json()
     mahanikaya_ical()
     mahanikaya_only_uposathas_ical()
-    mahanikaya_only_uposathas_icons()
+    mahanikaya_only_moons_ical()
     mahanikaya_csv()
     year_types()
 
