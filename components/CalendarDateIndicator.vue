@@ -268,6 +268,11 @@
  .is-dark button
    border-width: 1px
    border-color: lighten(black, 30%)
+   &:hover,
+   &:focus,
+   &:active
+     border-width: 1px
+     border-color: lighten(black, 30%)
 
  .calendar-date-indicator
    .date-label

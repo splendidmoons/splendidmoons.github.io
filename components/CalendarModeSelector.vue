@@ -76,4 +76,13 @@
  .calendar-mode-selector > *
    cursor: pointer
    user-select: none
+
+ .is-dark button
+   border-width: 1px
+   border-color: lighten(black, 30%)
+   &:hover,
+   &:focus,
+   &:active
+     border-width: 1px
+     border-color: lighten(black, 30%)
 </style>

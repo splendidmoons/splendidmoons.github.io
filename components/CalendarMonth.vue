@@ -90,10 +90,11 @@
 
          currentMonthDays() {
              return [...Array(this.numberOfDaysInMonth)].map((day, index) => {
+                 const paddedMonth = String(this.month).padStart(2, '0');
+                 const paddedDay = String(index + 1).padStart(2, '0');
+                 const dateStr = `${this.year}-${paddedMonth}-${paddedDay}`;
                  return {
-                     date: dayjs(`${this.year}-${this.month}-${index + 1}`).format(
-                         "YYYY-MM-DD"
-                     ),
+                     date: dateStr,
                      isCurrentMonth: true
                  };
              });
@@ -103,7 +104,8 @@
              const firstDayOfTheMonthWeekday = this.getWeekday(
                  this.currentMonthDays[0].date
              );
-             const previousMonth = dayjs(`${this.year}-${this.month}-01`).subtract(
+             const paddedMonth = String(this.month).padStart(2, '0');
+             const previousMonth = dayjs(`${this.year}-${paddedMonth}-01`).subtract(
                  1,
                  "month"
              );
@@ -121,11 +123,11 @@
 
              return [...Array(visibleNumberOfDaysFromPreviousMonth)].map(
                  (day, index) => {
+                     const year = previousMonth.year();
+                     const month = String(previousMonth.month() + 1).padStart(2, '0');
+                     const dayNum = String(previousMonthLastMondayDayOfMonth + index).padStart(2, '0');
                      return {
-                         date: dayjs(
-                             `${previousMonth.year()}-${previousMonth.month() +
-                1}-${previousMonthLastMondayDayOfMonth + index}`
-                         ).format("YYYY-MM-DD"),
+                         date: `${year}-${month}-${dayNum}`,
                          isCurrentMonth: false
                      };
                  }
@@ -137,17 +139,19 @@
                  `${this.year}-${this.month}-${this.currentMonthDays.length}`
              );
 
-             const nextMonth = dayjs(`${this.year}-${this.month}-01`).add(1, "month");
+             const paddedMonth = String(this.month).padStart(2, '0');
+             const nextMonth = dayjs(`${this.year}-${paddedMonth}-01`).add(1, "month");
 
              const visibleNumberOfDaysFromNextMonth = lastDayOfTheMonthWeekday
                                                     ? 7 - lastDayOfTheMonthWeekday
                                                     : lastDayOfTheMonthWeekday;
 
              return [...Array(visibleNumberOfDaysFromNextMonth)].map((day, index) => {
+                 const year = nextMonth.year();
+                 const month = String(nextMonth.month() + 1).padStart(2, '0');
+                 const dayNum = String(index + 1).padStart(2, '0');
                  return {
-                     date: dayjs(
-                         `${nextMonth.year()}-${nextMonth.month() + 1}-${index + 1}`
-                     ).format("YYYY-MM-DD"),
+                     date: `${year}-${month}-${dayNum}`,
                      isCurrentMonth: false
                  };
              });
