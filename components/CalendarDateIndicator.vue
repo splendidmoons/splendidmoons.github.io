@@ -99,6 +99,8 @@
  import { mapWritableState } from 'pinia';
  import { main_store } from '~/store/main';
 
+ const MIN_SWIPE_DISTANCE_PX = 40;
+
  export default {
    props: {
      selectedDate: {
@@ -222,6 +224,11 @@
 
        const delta_x = Math.abs(this.swipe_pos_x_start - pos_x_end);
        const delta_y = Math.abs(this.swipe_pos_y_start - pos_y_end);
+
+      // Ignore tiny movements (tap / micro-drag)
+       if (delta_x < MIN_SWIPE_DISTANCE_PX) {
+         return;
+       }
 
        // vertical swipe
        if (delta_y > delta_x) {
