@@ -54,6 +54,12 @@
              required: false,
              default: false,
          },
+
+         today: {
+             type: String,
+             required: false,
+             default: () => dayjs().format("YYYY-MM-DD"),
+         },
      },
 
      computed: {
@@ -70,10 +76,6 @@
                     ...this.nextMonthDays
                 ];
              }
-         },
-
-         today() {
-             return dayjs().format("YYYY-MM-DD");
          },
 
          month() {

@@ -4,6 +4,7 @@
             <div v-for="m in row" class="column">
                 <CalendarMonth
                     :selected-date="m"
+                    :today="today"
                     :is-compact="isCompact"
                     :show-month-name="true"
                     :header-is-compact="true"
@@ -27,6 +28,12 @@
          isCompact: {
              type: Boolean,
              required: true,
+         },
+
+         today: {
+             type: String,
+             required: false,
+             default: () => dayjs().format("YYYY-MM-DD"),
          },
      },
 

@@ -11,11 +11,13 @@
         <CalendarMonth
             v-if="calendar_period == 'month'"
             :selected-date="selected_date"
+            :today="today"
             :is-compact="is_compact"
         />
         <CalendarYear
             v-else
             :selected-date="selected_date"
+            :today="today"
             :is-compact="is_compact"
         />
     </div>
@@ -28,6 +30,7 @@
      data() {
          return {
              selected_date: dayjs(),
+             today: dayjs().format("YYYY-MM-DD"),
              calendar_period: 'month', // 'year' or 'month'
              is_compact: false,
          };
